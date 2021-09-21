@@ -5,6 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.common import keys
 import time
 import datetime
+import requests
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -17,13 +18,12 @@ time_now=datetime.datetime.now()
 print(time_now.strftime("%m/%d/%Y, %H:%M:%S")+' Router change time script Started...')
 
 #Get the current IP and append to file
-driver.get("https://whatismyipaddress.com/")
-public_ip=driver.find_element_by_class_name("address").text
+public_ip=requests.get('https://api.ipify.org').text
 print('The current IP: '+public_ip)
 file = open("change.log", "a")
 file.write(time_now.strftime("%m/%d/%Y, %H:%M:%S")+" ::Current IP: "+public_ip + "\n")
 file.close()
-time.sleep(2)
+time.sleep(1)
 #Rebooting the router
 driver.get("http://192.168.1.1")
 
@@ -49,12 +49,11 @@ driver.switch_to.alert.accept()
 print('Router Rebooting...')
 
 #Put script to sleep until the router is back
-time.sleep(180)
+time.sleep(170)
 print('Router Reboot Completed')
 
 #Get the New IP and append to file
-driver.get("https://whatismyipaddress.com/")
-public_ip=driver.find_element_by_class_name("address").text
+public_ip=requests.get('https://api.ipify.org').text
 time_now=datetime.datetime.now()
 print('The New IP: '+public_ip)
 file = open("change.log", "a")

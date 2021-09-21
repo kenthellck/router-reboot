@@ -8,6 +8,7 @@ Hi Folks, If you are tired of multiple disconnection from your router where it c
 ```
 pip install datetime
 pip install selenium
+pip install winwifi
 ```
 
 ## Chrome webdriver is required
