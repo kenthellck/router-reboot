@@ -50,6 +50,8 @@ def change_wifi(status):
       file = open("change.log", "a")
       file.write(time_now.strftime("%m/%d/%Y, %H:%M:%S")+" ::Successfully Failback to: "+Primary_SSID + "\n")
       file.close()
+      print("Waiting few mnitues to restart the script")
+      time.sleep(30)
       print("Successfully failover to "+Primary_SSID)
     else:
       print("No Issues observed")
